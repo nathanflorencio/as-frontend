@@ -1,6 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+import { EventTabInfo } from './EventTabInfo'
+import { Event } from '@/types/Event'
+import { EventTabGroups } from '../groups/EventTabGroups'
+import { EventTabPeople } from '../people/EventTabPeople'
 
 type EventEditProps = {
   event: Event | undefined
@@ -37,9 +41,11 @@ export const EventEdit = ({ event, refreshAction }: EventEditProps) => {
         </div>
       </div>
       <div>
-        {tab === 'info' && 'infooo'}
-        {tab === 'groups' && 'grupossss'}
-        {tab === 'people' && 'pessoasss'}
+        {tab === 'info' && (
+          <EventTabInfo event={event} refreshAction={refreshAction} />
+        )}
+        {tab === 'groups' && <EventTabGroups eventId={event.id} />}
+        {tab === 'people' && <EventTabPeople eventId={event.id} />}
       </div>
     </div>
   )
